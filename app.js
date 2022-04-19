@@ -46,6 +46,21 @@ app.get('/getBitcoinInfo', async(req, res) => {
       // handle error
       console.log(error);
     });
+    var date = new Date();
+
+    var lastThirtyDay = new Date(date.getFullYear(), date.getMonth() + 30, 0);
+    axios
+      .get(
+        `https://api.coindesk.com/v1/bpi/historical/close.json?start=${lastThirtyDay}&end=${date}&currency=eur`,
+      )
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
     res.send("ok")
 });
 
